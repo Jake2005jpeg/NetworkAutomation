@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Management System</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .router-info {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 7px;
+            line-height: 1.8;
+        }
+
+        .command {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .command:last-child {
+            border-bottom: none;
+        }
+
+        .command p {
+            margin: 0 0 7px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        code {
+            color: #2563eb;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .copy-button {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .copy-button:hover {
+            background: #d1d5db;
+        }
+
+        .run-button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .error {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .success {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .result {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 7px;
+            overflow-x: auto;
+        }
+
+        .result h3 {
+            color: #93c5fd;
+            font-size: 15px;
+        }
+
+        .result pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            margin-top: 30px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 10px;
+            }
+
+            .command {
+                align-items: flex-start;
+            }
+
+            .command button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Page Header -->
+    <header>
+        <h1>Router Management System</h1>
+        <p>Simple Cisco Router Monitoring Dashboard</p>
+    </header>
+
+    <!-- Router Information -->
+    <div class="card">
+        <h2>Router Information</h2>
+
+        <div class="router-info">
+            <strong>Router IP:</strong> 192.168.10.111<br>
+            <strong>Connection Type:</strong> Cisco IOS Telnet<br>
+            <strong>Port:</strong> 32770<br>
+            <strong>Status:</strong> Ready to connect
+        </div>
+    </div>
+
+    <!-- Available Commands -->
+    <div class="card">
+        <h2>Available Commands</h2>
+
+        <div class="command">
+            <div>
+                <p>1. View router information</p>
+                <code>show version</code>
+            </div>
+
+            <button class="copy-button"
+                onclick="copyCommand('show version')">
+                Copy
+            </button>
+        </div>
+
+        <div class="command">
+            <div>
+                <p>2. Check interface status</p>
+                <code>show ip interface brief</code>
+            </div>
+
+            <button class="copy-button"
+                onclick="copyCommand('show ip interface brief')">
+                Copy
+            </button>
+        </div>
+
+        <div class="command">
+            <div>
+                <p>3. View active configuration</p>
+                <code>show running-config</code>
+            </div>
+
+            <button class="copy-button"
+                onclick="copyCommand('show running-config')">
+                Copy
+            </button>
+        </div>
+
+        <!-- Run Commands -->
+        <form action="/" method="POST">
+            <button type="submit" class="run-button">
+                Run All Commands
+            </button>
+        </form>
+    </div>
+
+    <!-- Error Message -->
+    {% if error %}
+    <div class="error">
+        <strong>Connection Error</strong>
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Command Results -->
+    {% if results %}
+    <div class="card">
+        <h2>Command Results</h2>
+
+        <div class="success">
+            Commands have been executed.
+        </div>
+
+        {% for command, output in results.items() %}
+        <div class="result">
+            <h3>{{ command }}</h3>
+            <pre>{{ output }}</pre>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+    <footer>
+        Router Management System | Network Diagnostics
+    </footer>
+
+</div>
+
+<script>
+    function copyCommand(command) {
+        navigator.clipboard.writeText(command)
+            .then(function() {
+                alert("Command copied successfully!");
+            })
+            .catch(function() {
+                alert("Unable to copy command.");
+            });
+    }
+</script>
+
+</body>
+</html>
