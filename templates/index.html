@@ -15,8 +15,8 @@
             margin: 0;
             padding: 25px;
             font-family: Arial, sans-serif;
-            background: #fdf6fa;
-            color: #51404b;
+            background: #101018;
+            color: #e8e5ed;
         }
 
         .container {
@@ -25,27 +25,31 @@
         }
 
         header {
-            background: #f3b6d2;
+            background: linear-gradient(135deg, #172b46, #1d3b60);
             padding: 30px;
             border-radius: 20px 20px 5px 20px;
-            color: #663b53;
+            color: #ffffff;
+            border: 1px solid #31577f;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
         }
 
         header h1 {
             margin: 0 0 10px;
             font-size: 27px;
+            color: #8ec5ff;
         }
 
         header p {
             margin: 0;
             font-size: 14px;
+            color: #c1d5eb;
         }
 
         .subtitle {
             margin-top: 25px;
             font-size: 12px;
             letter-spacing: 2px;
-            color: #a34f7b;
+            color: #69adf5;
             font-weight: bold;
         }
 
@@ -55,24 +59,26 @@
 
         h2 {
             font-size: 18px;
-            color: #a34f7b;
+            color: #69adf5;
             margin-bottom: 15px;
         }
 
         .info-box {
-            background: white;
+            background: #1c1c28;
             padding: 20px;
             border-radius: 5px 20px 20px 20px;
-            border: 1px solid #f2d5e4;
+            border: 1px solid #34465d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
             padding: 12px 5px;
-            border-bottom: 1px dashed #eed5e2;
+            border-bottom: 1px dashed #354b65;
             font-size: 14px;
             gap: 10px;
+            color: #d5cfdb;
         }
 
         .info-row:last-child {
@@ -80,34 +86,44 @@
         }
 
         .info-row strong {
-            color: #a34f7b;
+            color: #8ec5ff;
             text-align: right;
         }
 
         .status {
-            color: #239b75 !important;
+            color: #39d69a !important;
         }
 
         .command-box {
-            background: white;
+            background: #1c1c28;
             padding: 18px;
             margin-bottom: 12px;
             border-radius: 12px;
-            border-left: 5px solid #e9a4c5;
+            border-left: 5px solid #398bd8;
+            border-top: 1px solid #2b3d53;
+            border-right: 1px solid #2b3d53;
+            border-bottom: 1px solid #2b3d53;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 12px;
+            transition: 0.3s;
+        }
+
+        .command-box:hover {
+            background: #222b3b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
         }
 
         .command-text p {
             font-size: 13px;
-            color: #927b89;
+            color: #aaaec0;
             margin: 0 0 8px;
         }
 
         code {
-            color: #a34f7b;
+            color: #8ec5ff;
             font-size: 13px;
             overflow-wrap: anywhere;
         }
@@ -116,24 +132,27 @@
             border: none;
             padding: 10px 16px;
             border-radius: 20px;
-            background: #e9a4c5;
-            color: white;
+            background: #2878bd;
+            color: #ffffff;
             cursor: pointer;
             font-weight: bold;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #cf7eaa;
+            background: #4296dc;
+            transform: scale(1.04);
         }
 
         .copy-button {
-            background: #f9e5ef;
-            color: #a34f7b;
+            background: #203b59;
+            color: #9bcaff;
             font-size: 12px;
+            border: 1px solid #41688f;
         }
 
         .copy-button:hover {
-            background: #f2ccdf;
+            background: #2c5278;
         }
 
         .run-button {
@@ -141,43 +160,45 @@
             margin-top: 12px;
             padding: 15px;
             border-radius: 10px;
-            background: #b66b94;
+            background: linear-gradient(135deg, #2878bd, #24558a);
             font-size: 15px;
+            box-shadow: 0 5px 15px rgba(40, 120, 189, 0.2);
         }
 
         .run-button:hover {
-            background: #965176;
+            background: linear-gradient(135deg, #4296dc, #3174b5);
         }
 
         .error {
             margin-top: 20px;
             padding: 15px;
-            background: #ffe8e8;
-            color: #b42318;
+            background: #351d27;
+            color: #ff9b9b;
             border-radius: 10px;
             border-left: 5px solid #e57373;
         }
 
         .success {
-            background: #e8f7ef;
-            color: #27805b;
+            background: #17352c;
+            color: #59dda5;
             padding: 14px;
             border-radius: 10px;
             margin-bottom: 15px;
             font-size: 14px;
+            border: 1px solid #285744;
         }
 
         .result {
-            background: #fff;
+            background: #1c1c28;
             padding: 18px;
-            border: 1px solid #f2d5e4;
+            border: 1px solid #34465d;
             border-radius: 12px;
             margin-top: 12px;
             overflow-x: auto;
         }
 
         .result h3 {
-            color: #a34f7b;
+            color: #8ec5ff;
             font-size: 14px;
         }
 
@@ -186,16 +207,35 @@
             overflow-wrap: anywhere;
             font-size: 12px;
             line-height: 1.6;
-            color: #594a53;
+            color: #d2cbd8;
         }
 
         footer {
             text-align: center;
             margin-top: 35px;
-            color: #b69aaa;
+            color: #8294aa;
             font-size: 12px;
         }
 
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #101018;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #41688f;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #398bd8;
+        }
+
+        /* Mobile responsive design */
         @media (max-width: 550px) {
             body {
                 padding: 12px;
@@ -216,6 +256,10 @@
 
             .info-row {
                 font-size: 12px;
+            }
+
+            .copy-button {
+                align-self: flex-end;
             }
         }
     </style>
